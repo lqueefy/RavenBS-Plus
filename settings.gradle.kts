@@ -4,6 +4,8 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://oss.sonatype.org/content/repositories/snapshots")
         maven("https://maven.architectury.dev/")
+        maven("https://repo.essential.gg/#/public/gg/essential/")
+        maven("https://repo.polyfrost.cc/releases/")
         maven("https://maven.fabricmc.net")
         maven("https://maven.minecraftforge.net/")
         maven("https://repo.spongepowered.org/maven/")
