@@ -38,6 +38,7 @@ public class HUD extends Module {
     private boolean isAlphabeticalSort;
     private boolean canShowInfo;
     private String[] outlineModes = new String[] { "None", "Full", "Side" };
+    private String[] spacingModes = new String[] { "Raven", "Myau" };
     private static int backGroundColor = new Color(0, 0, 0, 110).getRGB();
 
     public HUD() {
@@ -45,6 +46,8 @@ public class HUD extends Module {
         this.registerSetting(new DescriptionSetting("Right click bind to hide modules."));
         this.registerSetting(theme = new SliderSetting("Theme", 0, Theme.themes));
         this.registerSetting(outline = new SliderSetting("Outline", 0, outlineModes));
+        this.registerSetting(spacing = new SliderSetting("Spacing", 0, spacingModes));
+
         this.registerSetting(new ButtonSetting("Edit position", () -> {
             mc.displayGuiScreen(new EditScreen());
         }));
@@ -177,8 +180,16 @@ public class HUD extends Module {
                     mc.fontRendererObj.drawString(moduleName, xPos, (float) yPos, color, true);
                     previousModule = moduleName;
                     lastXPos = xPos;
-                    yPos += mc.fontRendererObj.FONT_HEIGHT + 2;
-                }
+                    switch ((int) spacing.getInput()) {
+                        case 0:
+                            yPos += mc.fontRendererObj.FONT_HEIGHT + 2;
+                            break;
+                        case 1:
+                            yPos += mc.fontRendererObj.FONT_HEIGHT + 1;
+                            break;
+                        case 2:
+                            yPos += mc.fontRendererObj.FONT_HEIGHT + 0.5;
+                            break;           }
             }
         }
         catch (Exception e) {
@@ -189,6 +200,8 @@ public class HUD extends Module {
             RenderUtils.drawRect(lastXPos - 2, yPos - 1, lastXPos + mc.fontRendererObj.getStringWidth(previousModule) + 1.5, yPos, Theme.getGradient((int) theme.getInput(), n2));
         }
     }
+}
+
 
     public static int getLongestModule(FontRenderer fr) {
         int length = 0;
