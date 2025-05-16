@@ -29,7 +29,7 @@ public class BHop extends Module {
     public BHop() {
         super("BHop", Module.category.movement);
         this.registerSetting(mode = new SliderSetting("Mode", 0, modes));
-        this.registerSetting(speedSetting = new SliderSetting("Speed", 2.0, 0.5, 8.0, 0.1));
+        this.registerSetting(speedSetting = new SliderSetting("Speed", 1.0, 0.5, 8.0, 0.1));
         this.registerSetting(liquidDisable = new ButtonSetting("Disable in liquid", true));
         this.registerSetting(sneakDisable = new ButtonSetting("Disable while sneaking", true));
         this.registerSetting(rotateYaw = new ButtonSetting("Rotate yaw", false));
